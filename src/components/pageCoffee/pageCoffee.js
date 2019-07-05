@@ -1,10 +1,36 @@
 import React, {Component} from 'react';
 import Header from '../appHeader';
 import './pageCoffee.css';
+import ItemList from '../itemList';
+import GetService from '../../services/getService';
 import CoffeeGirl from './coffee_girl.jpg';
 import LogoB from '../appFooter/Beans_logo_dark.svg';
 
 export default class CoffeePage extends Component {
+
+  constructor(props) {
+    super(props);
+        this.state = {
+            term:'',
+            filter: '',
+            loading: true
+        }
+        this.onUpdateSearch = this.onUpdateSearch.bind(this);
+        this.onUpdateFilter = this.onUpdateFilter.bind(this);
+
+  };  
+
+  onUpdateSearch(term) {
+    this.setState({term})
+  }
+
+  onUpdateFilter(country) {
+    this.setState(
+        {filter: country}
+        )
+  }
+
+  service = new GetService();
 
   render() {
 
@@ -50,69 +76,32 @@ export default class CoffeePage extends Component {
                     </form>
                 </div>
                 <div className="col-lg-4">
-                  <div class="shop__filter">
-                            <div class="shop__filter-label">
-                                Or filter
-                            </div>
-                            <div class="shop__filter-group">
-                                <button class="shop__filter-btn">Brazil</button>
-                                <button class="shop__filter-btn">Kenya</button>
-                                <button class="shop__filter-btn">Columbia</button>
-                            </div>
+                <div className="shop__filter">
+                        <div className="shop__filter-label">
+                            Or filter
                         </div>
+                        <div className="shop__filter-group">
+                            <button className="shop__filter-btn"
+                                onClick = {() => this.onUpdateFilter('Brazil')}
+                            >Brazil</button>
+                            <button className="shop__filter-btn"
+                                onClick = {() => this.onUpdateFilter('Kenya')}
+                            >Kenya</button>
+                            <button className="shop__filter-btn"
+                                onClick = {() => this.onUpdateFilter('Columbia')}
+                            >Columbia</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className="row">
                 <div className="col-lg-10 offset-lg-1">
                     <div className="shop__wrapper">
-                      <div class="shop__item">
-                        <img src="https://www.sciencenews.org/sites/default/files/main/articles/100315_coffee_opener_NEW_0.jpg" alt="coffee"></img>
-                          <div class="shop__item-title">
-                              Solimo Coffee Beans 2kg
-                          </div>
-                          <div class="shop__item-country">Brazil</div>
-                          <div class="shop__item-price">10.73$</div>
-                      </div>  
-                      <div class="shop__item">
-                        <img src="https://www.sciencenews.org/sites/default/files/main/articles/100315_coffee_opener_NEW_0.jpg" alt="coffee"></img>
-                        <div class="shop__item-title">
-                            Presto Coffee Beans 1kg
-                        </div>
-                        <div class="shop__item-country">Brazil</div>
-                        <div class="shop__item-price">15.99$</div>
-                      </div> 
-                      <div class="shop__item">
-                        <img src="https://hhp-blog.s3.amazonaws.com/2018/07/iStock-673468996.jpg" alt="coffee"></img>
-                        <div class="shop__item-title">
-                            AROMISTICO Coffee 1kg
-                        </div>
-                        <div class="shop__item-country">Brazil</div>
-                        <div class="shop__item-price">6.99$</div>
-                      </div>
-                      <div class="shop__item">
-                        <img src="https://www.sciencenews.org/sites/default/files/main/articles/100315_coffee_opener_NEW_0.jpg" alt="coffee"></img>
-                        <div class="shop__item-title">
-                          Solimo Coffee Beans 2kg
-                        </div>
-                        <div class="shop__item-country">Brazil</div>
-                        <div class="shop__item-price">10.73$</div>
-                      </div>
-                      <div class="shop__item">
-                        <img src="https://i0.wp.com/www.healthline.com/hlcmsresource/images/AN_images/AN275-cup-of-coffee-732x549-Thumb.jpg?w=756" alt="coffee"></img>
-                        <div class="shop__item-title">
-                          Solimo Coffee Beans 2kg
-                        </div>
-                        <div class="shop__item-country">Brazil</div>
-                        <div class="shop__item-price">10.73$</div>
-                      </div>
-                      <div class="shop__item">
-                        <img src="https://www.sciencenews.org/sites/default/files/main/articles/100315_coffee_opener_NEW_0.jpg" alt="coffee"></img>
-                        <div class="shop__item-title">
-                          Solimo Coffee Beans 2kg
-                        </div>
-                        <div class="shop__item-country">Brazil</div>
-                        <div class="shop__item-price">10.73$</div>
-                      </div>
+                    <ItemList 
+                            getData = {this.service.getShop}
+                            term = {this.state.term}
+                            filter = {this.state.filter}
+                        />                      
                     </div>
                 </div>
             </div>

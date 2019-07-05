@@ -4,7 +4,10 @@ import Header from '../appHeader';
 import LogoB from '../appFooter/Beans_logo_dark.svg';
 
 export default class ItemPage extends Component {
+
   render() {
+
+    const arr = this.props.location.state;
 
     return(
         <> 
@@ -15,30 +18,29 @@ export default class ItemPage extends Component {
             <Header />
             </div>
           </div>
-          <h1 className="title-big">Our Coffee</h1>
+          <h1 className="title-big">{arr.name}</h1>
         </div>
       </div>
         <section className="shop">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 offset-1">
-                    <img class="shop__girl" src="img/coffee_item.jpg" alt="coffee_item"></img>
+        <div className="container">
+            <div className="row">
+                <div className="col-lg-5 offset-1">
+                    <img className="shop__girl" src={arr.url} alt="coffee_item"></img>
                 </div>
-                <div class="col-lg-4">
-                    <div class="title">About it</div>
-                    <img class="beanslogo" src={LogoB} alt="Beans logo"></img>
-                    <div class="shop__point">
+                <div className="col-lg-4">
+                    <div className="title">About it</div>
+                    <img className="beanslogo" src={LogoB} alt="Beans logo"></img>
+                    <div className="shop__point">
                         <span>Country:</span>
-                        Brazil
+                        {arr.country}
                     </div>
-                    <div class="shop__point">
+                    <div className="shop__point">
                         <span>Description:</span>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        {arr.description}
                     </div>
-                    <div class="shop__point">
+                    <div className="shop__point">
                         <span>Price:</span>
-                        <span class="shop__point-price">16.99$</span>
+                        <span className="shop__point-price">{arr.price}</span>
                     </div>
                 </div>
             </div>

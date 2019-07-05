@@ -17,9 +17,6 @@ const Header = () => {
         <li className="header__item">
           <Link to='/pleasurepage'>For your pleasure</Link>
         </li>
-        <li className="header__item">
-          <Link to='/itempage'>+++item</Link>
-        </li>
       </ul>
   )
 }
