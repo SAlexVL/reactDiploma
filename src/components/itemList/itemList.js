@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
-import Spinner from '../spinner';
+import Spinner from '../spinner/spinner';
 import ErrorMessage from '../errorMessage';
 
 class ItemList extends Component {
@@ -94,7 +94,7 @@ class ItemList extends Component {
 
     const resFilter = this.filterPost(this.updateData(itemList, term), filter);
     const coffee = this.renderCoffee(resFilter);       
-    const errorMessage = error ? <ErrorMessage /> : null
+    const errorMessage = error ? <ErrorMessage /> : null;
 
     return (
       <>
