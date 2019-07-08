@@ -59,8 +59,9 @@ class ItemList extends Component {
   }
 
   onRenderCoffee = (item, name) => {
+    let link = item.name.split(' ').join('-');
     if(name !== 'pleasurepage') {
-      this.props.history.push(`/pagecoffee/${item.name}`, item);
+      this.props.history.push(`/pagecoffee/${link}`, item);
     }
   }
 

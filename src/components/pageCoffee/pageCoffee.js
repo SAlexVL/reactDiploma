@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Header from '../appHeader';
 import './pageCoffee.css';
 import ItemList from '../itemList';
+import SearchPanel from '../searchPanel';
 import GetService from '../../services/getService';
 import CoffeeGirl from './coffee_girl.jpg';
 import LogoB from '../appFooter/Beans_logo_dark.svg';
@@ -72,7 +73,9 @@ export default class CoffeePage extends Component {
                 <div className="col-lg-4 offset-2">
                     <form action="#" className="shop__search">
                         <label className="shop__search-label" htmlFor="filter">Looking for</label>
-                        <input id="filter" type="text" placeholder="start typing here..." className="shop__search-input"/>
+                        <SearchPanel
+                            onUpdateSearch={this.onUpdateSearch}
+                        />
                     </form>
                 </div>
                 <div className="col-lg-4">
