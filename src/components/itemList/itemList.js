@@ -20,6 +20,13 @@ class ItemList extends Component {
   //   })
   // }
 
+  componentDidCatch() {
+    this.setState({
+      error: true,
+      loading: false
+    })
+  }
+
   componentDidMount() {
     const {getData, name} = this.props;
       getData()

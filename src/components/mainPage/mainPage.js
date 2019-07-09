@@ -18,11 +18,7 @@ export default class MainPage extends Component {
     <>
     	<div className="preview">
         <div className="container">
-					<div className="row">
-						<div className="col-lg-6">
-							<Header />
-						</div>
-					</div>
+					<Header />
 					<div className="row">
 						<div className="col-lg-10 offset-lg-1">
 							<h1 className="title-big">Everything You Love About Coffee</h1>
