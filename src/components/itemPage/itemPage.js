@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './itemPage.css';
 import Header from '../appHeader';
+import ErrorMessage from '../errorMessage';
 import LogoB from '../appFooter/Beans_logo_dark.svg';
 
 export default class ItemPage extends Component {
@@ -9,7 +10,8 @@ export default class ItemPage extends Component {
 
     const arr = this.props.location.state;
 
-    return(
+    if (arr !== null && arr !== undefined) {
+      return(
         <> 
         <div className="banner">
         <div className="container">
@@ -31,15 +33,15 @@ export default class ItemPage extends Component {
                     <div className="title">About it</div>
                     <img className="beanslogo" src={LogoB} alt="Beans logo"></img>
                     <div className="shop__point">
-                        <span>Country:</span>
+                        <span>Country:&nbsp;&nbsp;</span>
                         {arr.country}
                     </div>
                     <div className="shop__point">
-                        <span>Description:</span>
+                        <span>Description:&nbsp;&nbsp;</span>
                         {arr.description}
                     </div>
                     <div className="shop__point">
-                        <span>Price:</span>
+                        <span>Price:&nbsp;&nbsp;</span>
                         <span className="shop__point-price">{arr.price}</span>
                     </div>
                 </div>
@@ -48,5 +50,10 @@ export default class ItemPage extends Component {
       </section>
       </>
     )
+    } else {
+      return <ErrorMessage />
+    }
+
+
   }
 }

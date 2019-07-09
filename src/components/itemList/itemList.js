@@ -12,13 +12,14 @@ class ItemList extends Component {
     loading: true
   }
 
-  onError = (err) => {
-    this.setState({
-      error: true,
-      loading: false
-    })
-  }
-  
+  // onError = (err) => {
+  //   console.log(err);
+  //   this.setState({
+  //     error: true,
+  //     loading: false
+  //   })
+  // }
+
   componentDidMount() {
     const {getData, name} = this.props;
       getData()
@@ -29,14 +30,23 @@ class ItemList extends Component {
                   loading: false            
               })
           })
-          .catch(this.onError);
+          .catch((err) => {
+            this.setState({
+              error: err,
+              loading: false
+            })
+          });
   }
 
   renderCoffee(arr) {
-    const {name, loading} = this.state;
+    const {name, loading, error} = this.state;
 
     if(loading) {
       return <Spinner />
+    }
+
+    if (error) {
+      return <ErrorMessage />;
     }
 
     return arr.map((item,id) => {
@@ -86,7 +96,7 @@ class ItemList extends Component {
 
   render() {
 
-    const {itemList, error} = this.state;
+    const {itemList} = this.state;
     const {term, filter} = this.props;
     
     if (itemList === '') {
@@ -95,11 +105,9 @@ class ItemList extends Component {
 
     const resFilter = this.filterPost(this.updateData(itemList, term), filter);
     const coffee = this.renderCoffee(resFilter);       
-    const errorMessage = error ? <ErrorMessage /> : null;
-
+    
     return (
       <>
-        {errorMessage}
         {coffee}
       </>
     );

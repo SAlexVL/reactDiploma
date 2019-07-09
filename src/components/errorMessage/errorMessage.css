@@ -1,0 +1,15 @@
+.shop__error {
+  display: flex;
+  flex-direction: column;
+  margin: 5% auto;
+}
+
+.shop__error img {
+  width: 520px;
+  height: 330px;
+  margin: 0 auto;
+}
+
+.shop__error span {
+  text-align: center;
+}
